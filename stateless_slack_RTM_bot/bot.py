@@ -21,7 +21,7 @@ class SlackBot:
 
         self.default_response_username = conf['response_username']
         self.default_response_avatar = conf['response_avatar']
-        self.admin_user_slack_id = conf.get('admin_user_slack_id')
+        self.admin_user_slack_ids = conf.get('admin_user_slack_ids')
 
         self.function_registry = {
             'help': {
@@ -50,7 +50,7 @@ class SlackBot:
         return {
             **self.function_registry,
             **self.admin_function_registry
-        } if user_id == self.admin_user_slack_id else self.function_registry
+        } if user_id in self.admin_user_slack_ids else self.function_registry
 
     @staticmethod
     def _user_input_agrees_with_function_interface(user_args, function):
@@ -99,10 +99,11 @@ class SlackBot:
         # Run function
         try:
             response_text = registry[user_command]['function'](*user_args)
+            if response_text is None:
+                return
         except Exception as e:
             response_text = 'The following error occurred:\n{}'.format(traceback.format_exc())
-        finally:
-            self.send_message(web_client, user_id, response_text)
+        self.send_message(web_client, user_id, response_text)
 
     def send_message(self, web_client, user_id, message):
         channel = web_client.im_open(user=user_id)["channel"]["id"]

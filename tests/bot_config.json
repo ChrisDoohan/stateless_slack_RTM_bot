@@ -1,5 +1,5 @@
 {
     "response_username": "stateless_slack_RTM_bot",
     "response_avatar": ":robot_face:",
-    "admin_user_slack_id": "ABCDEF"
+    "admin_user_slack_ids": ["ABCDEF"]
 }
