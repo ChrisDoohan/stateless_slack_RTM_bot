@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='stateless_slack_RTM_bot',
-      version='0.1',
+      version='0.2',
       description='Bot that abstracts and simplifies the Slack API.',
       url='https://github.com/ChrisDoohan/stateless_slack_RTM_bot',
       author='Chris Doohan',
