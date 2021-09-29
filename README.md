@@ -1,3 +1,6 @@
+# Warning
+Although Slack has not to my knowledge *explicitly* said that they are deprecating the RTM API, it is no longer possible to use it in newly started Slack apps. For more information, see [this github ticket here](https://github.com/slackapi/node-slack-sdk/issues/921). For new Slack apps, a bot based on the newer [Events API, used in Socket Mode](https://api.slack.com/apis/connections/socket) may be preferred.
+
 # About
 This project is a simple stateless slack bot wrapping the Python Slack client. It allows you to accept messages from users and route these to registered callbacks, as well as return responses via direct message. Because it does this by opening a websocket, it can be used from inside a firewall without opening an incoming port. The original intention of this bot is as a remote interface to hardware controlled by a Raspberry Pi.
 
