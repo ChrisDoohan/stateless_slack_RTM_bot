@@ -5,15 +5,12 @@ import logging
 import traceback
 
 import slack
-import ssl as ssl_lib
-import certifi
 
 logger = logging.getLogger()
 
 
 class SlackBot:
     def __init__(self, config_filepath):
-        self.ssl_context = ssl_lib.create_default_context(cafile=certifi.where())
         self.slack_token = os.environ['SLACK_BOT_TOKEN']
 
         with open(config_filepath, 'r') as f:
